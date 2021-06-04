@@ -21,7 +21,6 @@ class ViewPager2Adater(var list : ArrayList<Int>,var context : Context)  : Recyc
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        Glide.with(context).load(list.get(position)).into((holder as viewHolder).image)
         (holder as viewHolder).image.setBackgroundColor(list.get(position))
     }
 

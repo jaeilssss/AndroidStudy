@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +34,17 @@ class MainActivity : AppCompatActivity() {
         layoutOnBoardingIndicators = findViewById(R.id.indicators)
         setupOnBoardingIndicators()
         setCurrentOnboardingIndicator(0)
+
+                var transform = CompositePageTransformer()
+        transform.addTransformer(MarginPageTransformer(8))
+
+        transform.addTransformer(ViewPager2.PageTransformer{ view: View, fl: Float ->
+            var v = 1-Math.abs(fl)
+            view.scaleY = 0.8f + v * 0.2f
+        })
+
+        viewpager.setPageTransformer(transform)
+
 
         viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position : Int){
