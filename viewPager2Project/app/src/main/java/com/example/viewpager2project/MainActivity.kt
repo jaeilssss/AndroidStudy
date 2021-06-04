@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -14,12 +15,13 @@ import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var layout: ConstraintLayout
     var layoutOnBoardingIndicators : LinearLayout ?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var list = ArrayList<Int>()
-
+        layout = findViewById(R.id.main_layout)
         list.add(Color.parseColor("#ffff00"))
         list.add(Color.parseColor("#bdbdbd"))
         list.add(Color.parseColor("#0f9231"))
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setupOnBoardingIndicators()
         setCurrentOnboardingIndicator(0)
 
-                var transform = CompositePageTransformer()
+        var transform = CompositePageTransformer()
         transform.addTransformer(MarginPageTransformer(8))
 
         transform.addTransformer(ViewPager2.PageTransformer{ view: View, fl: Float ->
@@ -49,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position : Int){
                 setCurrentOnboardingIndicator(position)
+
             }
 
         })
