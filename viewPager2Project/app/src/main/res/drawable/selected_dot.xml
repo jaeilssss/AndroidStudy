@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
 
-            xmlns:android="http://schemas.android.com/apk/res/android"
 
-            android:shape="rectangle"
-            android:thickness="5dp"
-            android:innerRadius="10dp"
-            android:useLevel="false">
+    android:shape="rectangle"
+    android:thickness="5dp"
+    android:innerRadius="10dp"
+    android:useLevel="false">
+
+
             <corners
                 android:topLeftRadius="30dp"
                 android:bottomLeftRadius="30dp"
@@ -26,6 +25,6 @@
 
 
             </solid>
-        </shape>
-    </item>
-</layer-list>
+
+
+</shape>
