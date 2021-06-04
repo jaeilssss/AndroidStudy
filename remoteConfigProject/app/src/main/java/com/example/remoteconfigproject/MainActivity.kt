@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
             viewPager.adapter = adapter
 
         }
-
-
     }
 
 suspend  fun initData() : ArrayList<String>{
