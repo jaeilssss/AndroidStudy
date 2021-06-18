@@ -112,14 +112,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initSearchEditText(){
-        binding.searchEditText.setOnTouchListener { view, motionEvent ->
 
-            if(motionEvent.action == MotionEvent.ACTION_DOWN){
-                showHistoryView()
-                return@setOnTouchListener true
-            }
-            return@setOnTouchListener false
-        }
         binding.searchEditText.setOnKeyListener { view, keyCode, keyEvent ->
 
             if(keyCode==KeyEvent.KEYCODE_ENTER && keyEvent.action == MotionEvent.ACTION_DOWN){
@@ -130,6 +123,14 @@ class MainActivity : AppCompatActivity() {
 
             return@setOnKeyListener false
 
+        }
+        binding.searchEditText.setOnTouchListener { view, motionEvent ->
+
+            if(motionEvent.action == MotionEvent.ACTION_DOWN){
+                showHistoryView()
+                return@setOnTouchListener true
+            }
+            return@setOnTouchListener false
         }
     }
     fun initBookRecyclerView(){
@@ -155,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                 binding.historyRecyclerView.isVisible=true
                 historyAdapter.submitList(keywords.orEmpty())
             }
-        }
+        }.start()
     }
 
     private fun hideHistoryView(){
@@ -171,7 +172,7 @@ class MainActivity : AppCompatActivity() {
             db.historyDao().delete(keyword)
             showHistoryView()
             //todo view 갱신
-        }
+        }.start()
     }
     companion object {
         private const val TAG = "MainActivity"
