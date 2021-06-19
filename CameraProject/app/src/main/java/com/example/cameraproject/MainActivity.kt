@@ -73,7 +73,8 @@ class MainActivity : AppCompatActivity() {
     // 이미지 파일 생성
     private fun createImageFile(): File {
     val timestamp : String  = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir : File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+//        val storageDir : File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir : File? = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("JPEG_${timestamp}_",".jpg",storageDir)
                 .apply {
                     curPhotoPath = absolutePath
@@ -134,11 +135,11 @@ class MainActivity : AppCompatActivity() {
             savePhoto(bitmap)
         }
 
-
     }
 
     private fun savePhoto(bitmap: Bitmap) {
-        val folderPath = Environment.getExternalStorageDirectory().absolutePath + "/Pictures/" // 사진 폴더로 저장하기 위한 경로 선언
+//        val folderPath = Environment.getExternalStorageDirectory().absolutePath + "/" // 사진 폴더로 저장하기 위한 경로 선언
+        val folderPath = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.absolutePath + "/Pictures/" // 사진 폴더로 저장하기 위한 경로 선언
         val timestamp : String  = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val fileName = "${timestamp}.jpeg"
         val folder = File(folderPath)
